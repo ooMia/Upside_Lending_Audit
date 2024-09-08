@@ -7,7 +7,7 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {Address} from "@openzeppelin/contracts/utils/Address.sol";
 
-import {DreamAcademyLending, IPriceOracle} from "src/kaymin128.sol";
+import {DreamAcademyLending, IPriceOracle} from "src/mia/DreamAcademyLending.sol";
 
 contract DreamOracle is IPriceOracle {
     address public operator;
@@ -134,7 +134,8 @@ contract TokenReentrancyTest is Test {
         vm.startPrank(attacker);
         {
             uint256 amount = 10000 ether;
-            assertGe(usdc.allowance(attacker, address(lending)), amount);
+            assertGe(usdc.balanceOf(attacker), amount, "not enough balance");
+            assertGe(usdc.allowance(attacker, address(lending)), amount, "not enough allowance");
 
             uint256 prevBalance = usdc.balanceOf(attacker);
             lending.deposit(address(usdc), amount);

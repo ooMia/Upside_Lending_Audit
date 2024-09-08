@@ -23,7 +23,7 @@
 > <br>
 > 유동성이 충분히 확보되지 않을 경우, 사용자들의 자산이 컨트랙트에 동결될 수 있으므로 빠른 수정이 필요합니다.
 
-[require(accounts[msg.sender] >= tokenAmount, "your balance lower than etherAmount");](https://github.com/ooMia/Upside_Lending_Audit/blob/31cf9013883c5b59dbaa4e7eb3d25d9a1481468c/src/WOOSIK-jeremy.sol#L81)
+- [require(accounts[msg.sender] >= tokenAmount, "your balance lower than etherAmount");](https://github.com/ooMia/Upside_Lending_Audit/blob/31cf9013883c5b59dbaa4e7eb3d25d9a1481468c/src/WOOSIK-jeremy.sol#L81)
 
 ```ts
 function withdraw(address token, uint256 tokenAmount) public payable {
@@ -65,6 +65,31 @@ function deposit(address token, uint256 tokenAmount) public payable {
 
 ---
 
+# 🟠 Depsoit and Withdraw (2)
+
+> High
+> <br>
+> 동일한 블록 내에서 동일한 양으로 동일한 종류의 토큰의 입금과 출금을 반복하였으나, 출금 자체가 불가능합니다.
+> <br>
+> 유동성이 충분히 확보되지 않을 경우, 사용자들의 자산이 컨트랙트에 동결될 수 있으므로 빠른 수정이 필요합니다.
+
+- [gloomydumber.sol](src/gloomydumber.sol)
+- [gdh8230.sol](src/gdh8230.sol)
+
+---
+
+# 🟠 Arithmetic underflow or overflow
+
+> Medium
+> <br>
+> 다수의 컨트랙트에서 발견되는 이 현상은, 큰 값을 가진 블록 높이에 대해 거듭제곱 연산을 수행하며 발생하는 오버플로우와 언더플로우로 인해 컨트랙트 가용성이 저해되는 문제입니다. 특정 블록 높이 이후로는 컨트랙트 내의 자금이 동결될 수 있으므로, 사용자들에게 이 점을 고지하고 빠르게 수정할 필요가 있습니다.
+
+- [kaymin128.sol](src/kaymin128.sol)
+- [Entropy1110.sol](src/Entropy1110.sol)
+- [dokpark21.sol](src/dokpark21.sol)
+
+---
+
 # 🟡 Gas limit
 
 > Medium
@@ -72,20 +97,15 @@ function deposit(address token, uint256 tokenAmount) public payable {
 > 다수의 컨트랙트에서 발견되는 이 현상은, 블록의 수가 커질수록 내부 거듭제곱 연산에 의해 지나치게 많은 가스비가 소모되는 문제입니다.
 
 - [rivercastleone.sol](src/rivercastleone.sol)
+- [GODMuang.sol](src/GODMuang.sol)
+- [gdh8230.sol](src/gdh8230.sol)
+- [choihs0457.sol](src/choihs0457.sol)
+- [55hnnn.sol](src/55hnnn.sol)
+- [0xGh-st.sol](src/0xGh-st.sol)
 
 ### Solution
 
 - 컨트랙트 내 거듭제곱 연산을 최적화하여, 블록의 수가 증가해도 가스비가 증가하지 않도록 합니다.
-
----
-
-# 🟡 Arithmetic underflow or overflow
-
-> Medium
-> <br>
-> 다수의 컨트랙트에서 발견되는 이 현상은, 거듭제곱 연산에 의해 발생하는 오버플로우와 언더플로우로 인해 컨트랙트 가용성이 저하되는 문제입니다.
-
-- [kaymin128.sol](src/kaymin128.sol)
 
 ### Solution
 
@@ -112,8 +132,3 @@ function deposit(address token, uint256 tokenAmount) public payable {
 - ReentrancyGuard 라이브러리를 사용하여 재진입 공격을 방어합니다.
   ![reentrancy-guard](img/reentrancy-guard.png)
 - 함수 실행 이전/이후로 트랜잭션 결과에 대한 검증을 수행하여, 이상 거래를 방지합니다.
-
----
-
-시간이 부족하여 더 많은 컨트랙트를 분석하지 못했습니다.
-우선 진행 상황을 업데이트하고, 추가적인 분석을 진행할 예정입니다.

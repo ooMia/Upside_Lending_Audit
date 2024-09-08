@@ -8,7 +8,7 @@ interface IPriceOracle {
     function setPrice(address _asset, uint256 _price) external;
 }
 
-contract UpsideAcademyLending {
+contract DreamAcademyLending {
     event LogUint(uint256 value);
 
     IPriceOracle public priceOracle;

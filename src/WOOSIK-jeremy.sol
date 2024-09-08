@@ -2,13 +2,14 @@
 pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "forge-std/Test.sol";
 
 interface IPriceOracle {
     function getPrice(address token) external view returns (uint256);
     function setPrice(address token, uint256 price) external;
 }
 
-contract UpsideAcademyLending {
+contract DreamAcademyLending {
     IPriceOracle oracle;
     IERC20 usdc;
 
@@ -37,6 +38,9 @@ contract UpsideAcademyLending {
             usdc.transferFrom(msg.sender, address(this), tokenAmount);
             tokenAccount[msg.sender] += tokenAmount;
         }
+
+        console.log(accounts[msg.sender]);
+        console.log(tokenAccount[msg.sender]);
     }
 
     function borrow(address token, uint256 tokenAmount) public payable {
@@ -78,6 +82,8 @@ contract UpsideAcademyLending {
             }
         }
 
+        console.log("accounts[msg.sender]: %d", accounts[msg.sender]);
+        console.log("tokenAmount: %d", tokenAmount);
         require(accounts[msg.sender] >= tokenAmount, "your balance lower than etherAmount");
 
         payable(msg.sender).call{value: tokenAmount}("");

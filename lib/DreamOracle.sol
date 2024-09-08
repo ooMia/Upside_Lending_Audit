@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract IPriceOracle {
+interface IPriceOracle {
+    function getPrice(address token) external view returns (uint256);
+    function setPrice(address token, uint256 price) external;
+}
+
+contract DreamOracle is IPriceOracle {
     address public operator;
     mapping(address => uint256) prices;
 

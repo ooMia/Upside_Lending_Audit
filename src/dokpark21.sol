@@ -6,7 +6,7 @@ import "forge-std/console.sol";
 import "lib/DSMath.sol";
 import "lib/DreamOracle.sol";
 
-contract DreamAcademyLending is IPriceOracle {
+contract DreamAcademyLending is DreamOracle {
     ERC20 usdc;
     IPriceOracle oracle;
 

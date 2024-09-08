@@ -8,7 +8,7 @@ interface IPriceOracle {
     function setPrice(address token, uint256 price) external;
 }
 
-contract UpsideLending {
+contract DreamAcademyLending {
     struct User {
         bool isInit;
         uint256 deposit_eth;

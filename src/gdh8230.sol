@@ -9,7 +9,7 @@ interface IPriceOracle {
     function setPrice(address token, uint256 price) external;
 }
 
-contract UpsideLending {
+contract DreamAcademyLending {
     IPriceOracle public upsideOracle;
     IERC20 public usdc;
 

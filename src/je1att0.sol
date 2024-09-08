@@ -10,7 +10,7 @@ interface IPriceOracle {
     function setPrice(address token, uint256 price) external;
 }
 
-contract UpsideAcademyLending {
+contract DreamAcademyLending {
     using ABDKMathQuad for bytes16;
 
     struct LoanAccount {

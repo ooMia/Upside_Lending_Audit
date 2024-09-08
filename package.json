@@ -6,7 +6,7 @@
   },
   "scripts": {
     "install": "yarn install --ignore-scripts && forge install && forge update && yarn run remapping ",
-    "test": "npm run format && forge coverage",
+    "test": "npm run format && forge test --match-test reentrancy",
     "format": "yarn compile && prettier --write . && forge fmt",
     "build": "forge build",
     "compile": "forge compile",

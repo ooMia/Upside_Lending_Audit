@@ -11,7 +11,7 @@ interface IPriceOracle {
     function getPrice(address token) external view returns (uint256);
 }
 
-contract UpsideAcademyLending {
+contract DreamAcademyLending {
     struct User {
         uint256 etherDeposit;
         uint256 usdcDeposit;

@@ -8,7 +8,7 @@ interface IPriceOracle {
     function getPrice(address token) external view returns (uint256);
 }
 
-contract UpsideAcademyLending {
+contract DreamAcademyLending {
     IPriceOracle public price_oracle;
 
     event LogEvent(uint256 message);

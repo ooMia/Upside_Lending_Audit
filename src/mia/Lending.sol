@@ -213,7 +213,7 @@ abstract contract _Lending {
         uint256 postOpLoan,
         uint256 preOpCollateral,
         uint256 postOpCollateral
-    ) internal view {
+    ) internal pure {
         uint256 decimal = 1e18;
         uint256 decimal2 = 1e36;
         console.log("\tpreLTV: %d %d", preLTV / decimal, preLTV % decimal);

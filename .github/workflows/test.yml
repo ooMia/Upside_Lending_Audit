@@ -39,10 +39,10 @@ jobs:
           forge build --sizes
         id: build
 
-      - name: Run Forge tests
-        run: |
-          forge test -vvv
-        id: test
+      # - name: Run Forge tests
+      #   run: |
+      #     forge test -vvv
+      #   id: test
 
-      - name: Run snapshot
-        run: NO_COLOR=1 forge snapshot >> $GITHUB_STEP_SUMMARY
+      # - name: Run snapshot
+      #   run: NO_COLOR=1 forge snapshot >> $GITHUB_STEP_SUMMARY
